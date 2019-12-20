@@ -1,0 +1,23 @@
+############################################################
+####parameter -min/max/type of character --method 4 with using of parallel mathcing 
+
+SecRule REQUEST_METHOD "^POST$" "id:'130',msg:'positive model nokp-pass with parallel mathing 1',chain,deny"
+SecRule REQUEST_URI "^/sekolah/proses/login.php$" "chain" 
+SecRule ARGS:nokp "!@pmFromFile nokp.data" "chain" 
+SecRule ARGS:pass "@pmFromFile pass.data" "chain"
+SecRule ARGS:submit "^Hantar$"
+
+SecRule REQUEST_METHOD "^POST$" "id:'132',msg:'positive model nokp-pass with parallel mathing 2',chain,deny"
+SecRule REQUEST_URI "^/sekolah/proses/login.php$" "chain" 
+SecRule ARGS:nokp "@pmFromFile nokp.data" "chain" 
+SecRule ARGS:pass "!@pmFromFile pass.data" "chain"
+SecRule ARGS:submit "^Hantar$"
+
+
+SecRule REQUEST_METHOD "^POST$" "id:'133',msg:'positive model nokp-pass with parallel mathing 3',chain,deny"
+SecRule REQUEST_URI "^/sekolah/proses/login.php$" "chain" 
+SecRule ARGS:nokp "!@pmFromFile nokp.data" "chain" 
+SecRule ARGS:pass "!@pmFromFile pass.data" "chain"
+SecRule ARGS:submit "^Hantar$"
+
+#######################################################################

@@ -1,0 +1,15 @@
+
+#############################################################################################
+
+SecRule REQUEST_METHOD "POST" "id:'100',msg:'positive modeL parameter-value eq 0',chain,deny"
+SecRule REQUEST_URI "^/sekolah/proses/login.php$" "chain" 
+SecRule &ARGS:nokp|&ARGS:pass|&ARGS:submit "@eq 0"
+
+
+SecRule REQUEST_METHOD "POST" "id:'103',msg:'positive model parameter-value Hantar ',chain,deny"
+SecRule REQUEST_URI "^/sekolah/proses/login.php$" "chain" 
+SecRule ARGS:submit "!^Hantar$"
+
+#################################################################################################
+
+

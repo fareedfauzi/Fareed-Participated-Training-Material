@@ -1,0 +1,8 @@
+
+SecRule REQUEST_METHOD "POST" "id:'77',chain,deny"
+SecRule REQUEST_URI "^/sekolah/proses/login.php$" "chain" 
+SecRule REQUEST_HEADERS:Content-Type "!^application/x-www-form-urlencoded" 
+
+ 
+
+

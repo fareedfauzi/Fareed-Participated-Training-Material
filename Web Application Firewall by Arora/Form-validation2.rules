@@ -1,0 +1,18 @@
+
+####parameter -min/max/type of character --method 2
+
+SecRule REQUEST_METHOD "^POST$" "id:'120',msg:'positive model nokp-pass jenis A',chain,deny"
+SecRule REQUEST_URI "^/sekolah/proses/login.php$" "chain"
+SecRule ARGS:nokp "!^[a-z0-9]{5,12}$" "chain"
+SecRule ARGS:pass "^[a-zA-Z0-9]{3,16}$"
+
+SecRule REQUEST_METHOD "^POST$" "id:'121',msg:'positive model nokp-pass jenis B',chain,deny"
+SecRule REQUEST_URI "^/sekolah/proses/login.php$" "chain"
+SecRule ARGS:nokp "!^[a-z0-9]{5,12}$" "chain"
+SecRule ARGS:pass "!^[a-zA-Z0-9]{3,16}$"
+
+SecRule REQUEST_METHOD "^POST$" "id:'122',msg:'positive model nokp-pass jenis C',chain,deny"
+SecRule REQUEST_URI "^/sekolah/proses/login.php$" "chain"
+SecRule ARGS:nokp "^[a-z0-9]{5,12}$" "chain"
+SecRule ARGS:pass "!^[a-zA-Z0-9]{3,16}$"
+###########################################################
