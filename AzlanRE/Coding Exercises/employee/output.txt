@@ -1,0 +1,78 @@
+Records:
+
+Name: Azizul Hakimi bin Mohd Yussuf Izzudin
+Age: 30
+Salary: 10000
+
+Name: Ahmad Ashraff
+Age: 23
+Salary: 5000
+
+Name: Mohd Fauzi Bin Jamaluddin
+Age: 21
+Salary: 5000
+
+Name: Akmal Hisyam
+Age: 26
+Salary: 8000
+
+Name: Muhammad Ariff Bin Yasri
+Age: 22
+Salary: 14000
+
+Name: Najamuddin Sapia'i
+Age: 22
+Salary: 7000
+
+Name: Ahmad Aizuddin Aizat
+Age: 30
+Salary: 8000
+
+Name: Md Aiezatt
+Age: 28
+Salary: 12000
+
+Name: Mokhdzani Faeq Bin Mohamed Fauad
+Age: 23
+Salary: 13000
+
+Name: Muzaffar Mohamed
+Age: 31
+Salary: 6000
+
+Name: Nur Afiqah binti Mohd Norain
+Age: 27
+Salary: 12000
+
+Name: Amshar
+Age: 34
+Salary: 6000
+
+Name: Mohd Adib Arsyad Bin M. Anuar
+Age: 28
+Salary: 14000
+
+Name: Muhammad Zuhair
+Age: 23
+Salary: 14000
+
+Name: Muhd Sham Ashraff Bin Maskan
+Age: 20
+Salary: 5000
+
+Name: Fathi Kamil bin Mohad Zainuddin
+Age: 24
+Salary: 11000
+
+Name: Wan Ikbal Ismat Wan Kamal
+Age: 29
+Salary: 12000
+
+Name: Nur Muhammad Kamil bin Mohd Alta
+Age: 33
+Salary: 8000
+
+Name: Syed Muhamad Fadhil Syed Aluwi
+Age: 30
+Salary: 14000
+
