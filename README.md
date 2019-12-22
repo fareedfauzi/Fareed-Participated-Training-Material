@@ -1,2 +1,2 @@
 # Training
-Repo to compile all training material I participated and conducted
+Repo to compile all trainings' material I participated and conducted
