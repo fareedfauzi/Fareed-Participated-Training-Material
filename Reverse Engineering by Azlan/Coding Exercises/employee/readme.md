@@ -17,7 +17,7 @@ Make sure your output is similar to output.txt
 # Files description
 employee.db = File to parse
 
-employee_code.c = Coding
+employee_code.c = My codes
 
 output2.txt = My coding output
 
