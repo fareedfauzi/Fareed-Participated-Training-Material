@@ -5,25 +5,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct _FILE_HEADER {
+    char MAGIC[4]; //"DATA"
+    int NumberOfRecords;
+} FILE_HEADER, * PointerFILE_HEADER;
+
+typedef struct _EMPLOYEE {
+    char name[40]; // 40
+    int age; // 4
+    int salary; // 4, total = 48
+} EMPLOYEE, * PointerEMPLOYEE;
+
+
 int main()
 {
-    typedef struct _FILE_HEADER {
-    public:
-        char MAGIC[4]; //"DATA"
-        int NumberOfRecords;
-    }FILE_HEADER, *PointerFILE_HEADER;
-
-    typedef struct _EMPLOYEE {
-    public:
-        char name[40];
-        int age;
-        int salary;
-    } EMPLOYEE, *PointerEMPLOYEE;
-
     FILE *filekita;
     unsigned long fileLen;
 
-   
     // Open employee.db
     filekita = fopen("employee.db", "r");
     if (filekita == NULL) {
@@ -39,20 +37,38 @@ int main()
 
     //memory allocation
     char *mem = (char *)malloc(fileLen); 
-    printf("Address of mem: 0x%x", mem);
     
-    // Read for file employee.db and parse the contents
-    fread(mem, fileLen, 1, filekita);
+    // Read for file employee.db
+    fread(mem, 1, fileLen, filekita); // filekita = file handle
     
-    /* I'm stuck here */
+    PointerFILE_HEADER pfile_header = (PointerFILE_HEADER) mem;
+    
+    //printf("num of employees : %d\n", pfile_header->NumberOfRecords);
+    
+    printf("No of record: %d\n", pfile_header->NumberOfRecords);
+
+    for (int i = 0; i < pfile_header->NumberOfRecords; i++)
+    {
+        char* ptr_to_beginning_of_employee = (char*)mem + sizeof(FILE_HEADER);
+        EMPLOYEE *each = (EMPLOYEE *)ptr_to_beginning_of_employee + i;
+        
+        //PointerEMPLOYEE* each_employee = (PointerEMPLOYEE*)(mem + sizeof(FILE_HEADER));
+        printf("\nName = %s\n", each->name);
+        printf("Age = %d\n", each->age);
+        printf("Salary = %d\n", each->salary);
+
+        
+    }
 
     //Data written to output2.txt
+    /*
     FILE* fout = fopen("output2.txt", "wb");
-    fwrite(mem, fileLen, 1, fout);
+    fwrite(mem, 1, fileLen, fout);
     printf("\nWritten sucessfully.\n");
 
     fclose(filekita);
-    fclose(fout);
+    fclose(fout); 
+    */
     system("pause");
 
 
