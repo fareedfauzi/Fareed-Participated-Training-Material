@@ -12,14 +12,14 @@ typedef struct _FILE_HEADER {
     int NumberOfRecords;
 }FILE_HEADER, *PFILE_HEADER;
 ```
-Make sure your output is similar to output.txt
+Make sure your output is similar to output_sepatutnya.txt
 
 # Files description
 employee.db = File to parse
 
 employee_code.c = My codes
 
-output2.txt = My coding output
+my_output.txt = My coding output
 
-output.txt = Output that we wish for, after parsing the binary
+output_sepatutnya.txt = Output that we wish for, after parsing the binary
 
