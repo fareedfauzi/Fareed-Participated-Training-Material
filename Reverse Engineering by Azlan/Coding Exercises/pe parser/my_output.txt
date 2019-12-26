@@ -1,0 +1,72 @@
+============================
+IMAGE_DOS_HEADER
+============================
+e_magic: 5a4d
+e_lfanew: 80
+
+============================
+IMAGE_NT_HEADERS
+============================
+Signature: 4550
+
+============================
+IMAGE_FILE_HEADERS
+============================
+Machine: 14c
+NumberOfSections: 3
+TimeDateStamp: 926150c4
+PointerToSymbolTable: 0
+NumberOfSymbols: 0
+SizeOfOptionalHeader: e0
+Characteristics: 22
+
+============================
+IMAGE_OPTIONAL_HEADER
+============================
+Magic: 10b
+AddressOfEntryPoint: 4bfe
+ImageBase: c9239000400000
+SectionAlignment: 2000
+FileAlignment: 200
+MajorSubsystemVersion: 0x4
+SizeOfImage: a000
+SizeOfHeaders: 200
+Subsystem: 2
+NumberOfRvaAndSizes: 10
+
+============================
+IMAGE_SECTION_HEADER
+============================
+
+.text
+RVA: 2c04
+Virtual address: 2000
+SizeOfRawData: 2e00
+PointerToRawData: 200
+PointerToRelocations: 0
+PointerToLinenumbers: 0
+NumberOfRelocations: 0
+Characteristics: 60000020
+________________________
+
+.rsrc
+RVA: 5bc
+Virtual address: 6000
+SizeOfRawData: 600
+PointerToRawData: 3000
+PointerToRelocations: 0
+PointerToLinenumbers: 0
+NumberOfRelocations: 0
+Characteristics: 40000040
+________________________
+
+.reloc
+RVA: c
+Virtual address: 8000
+SizeOfRawData: 200
+PointerToRawData: 3600
+PointerToRelocations: 0
+PointerToLinenumbers: 0
+NumberOfRelocations: 0
+Characteristics: 42000040
+________________________
