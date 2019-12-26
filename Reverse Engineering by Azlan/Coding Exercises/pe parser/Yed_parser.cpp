@@ -103,7 +103,6 @@ int main(int argc, char** argv)
         section_header = (PIMAGE_SECTION_HEADER)(mem + dos_header->e_lfanew + 0xF8 + next_section);
         next_section = next_section + sizeof(IMAGE_SECTION_HEADER);
         printf("\n%s\n", section_header->Name);
-        
         printf("RVA: %x\n", section_header->Misc.VirtualSize);
         printf("Virtual address: %x\n", section_header->VirtualAddress);
         printf("SizeOfRawData: %x\n", section_header->SizeOfRawData);
@@ -119,13 +118,3 @@ int main(int argc, char** argv)
     free(mem);
     return 0;
 }
-
-
-/*
-    PIMAGE_DOS_HEADER dos_header;
-    PIMAGE_NT_HEADERS32 nt_header;
-    PIMAGE_FILE_HEADER file_header;
-    PIMAGE_OPTIONAL_HEADER32 optional_header32;
-    PIMAGE_SECTION_HEADER sectionheader;
-*/
-
