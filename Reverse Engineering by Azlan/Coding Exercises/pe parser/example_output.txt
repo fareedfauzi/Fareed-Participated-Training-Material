@@ -1,0 +1,152 @@
+
+File: pe_parser.exe
+FileSize 1A00
+Machine 14C
+NumberOfSections 5
+TimeDateStamp 56CED780
+PointerToSymbolTable 0
+NumberOfSymbols 0
+SizeOfOptionalHeader E0
+Characteristics 102
+OptionalHeader:
+
+Magic 10B
+MajorLinkerVersion A
+MinorLinkerVersion 0
+SizeOfCode 800
+SizeOfInitializedData E00
+SizeOfUninitializedData 0
+AddressOfEntryPoint 14B5
+BaseOfCode 1000
+BaseOfData 2000
+ImageBase 400000
+SectionAlignment 1000
+FileAlignment 200
+MajorOperatingSystemVersion 5
+MinorOperatingSystemVersion 1
+MajorImageVersion 0
+MinorImageVersion 0
+MajorSubsystemVersion 5
+MinorSubsystemVersion 1
+Win32VersionValue 0
+SizeOfImage 6000
+SizeOfHeaders 400
+CheckSum E668
+Subsystem 3
+DllCharacteristics 8140
+SizeOfStackReserve 100000
+SizeOfStackCommit 1000
+SizeOfHeapReserve 100000
+SizeOfHeapCommit 1000
+LoaderFlags 0
+NumberOfRvaAndSizes 10
+Section name: ExportTable
+RVA 0
+Size 0
+Section name: ImportTable
+RVA 2650
+Size 3C
+Section name: ResourceTable
+RVA 4000
+Size 1B4
+Section name: ExceptionTable
+RVA 0
+Size 0
+Section name: Certificate
+RVA 0
+Size 0
+Section name: FixupTable
+RVA 5000
+Size 100
+Section name: DebugTable
+RVA 2040
+Size 1C
+Section name: Architecture
+RVA 0
+Size 0
+Section name: GlobalPtr
+RVA 0
+Size 0
+Section name: TLSTable
+RVA 0
+Size 0
+Section name: LoadConfig
+RVA 0
+Size 0
+Section name: BoundImport
+RVA 0
+Size 0
+Section name: IAT
+RVA 2000
+Size 40
+Section name: DelayImport
+RVA 0
+Size 0
+Section name: CLRRuntime
+RVA 0
+Size 0
+Section name: Reserved
+RVA 0
+Size 0
+
+SectionHeader:
+
+Name: .text
+Misc_VirtualSize 73C
+Misc_PhysicalAddress 73C
+VirtualAddress 1000
+PointerToRawData 400
+SizeOfRawData 800
+PointerToRelocations 0
+NumberOfRelocations 0
+PointerToLinenumbers 0
+NumberOfLinenumbers 0
+Characteristics 60000020
+
+Name: .rdata
+Misc_VirtualSize 7FD
+Misc_PhysicalAddress 7FD
+VirtualAddress 2000
+PointerToRawData C00
+SizeOfRawData 800
+PointerToRelocations 0
+NumberOfRelocations 0
+PointerToLinenumbers 0
+NumberOfLinenumbers 0
+Characteristics 40000040
+
+Name: .data
+Misc_VirtualSize 13C
+Misc_PhysicalAddress 13C
+VirtualAddress 3000
+PointerToRawData 1400
+SizeOfRawData 200
+PointerToRelocations 0
+NumberOfRelocations 0
+PointerToLinenumbers 0
+NumberOfLinenumbers 0
+Characteristics C0000040
+
+Name: .rsrc
+Misc_VirtualSize 1B4
+Misc_PhysicalAddress 1B4
+VirtualAddress 4000
+PointerToRawData 1600
+SizeOfRawData 200
+PointerToRelocations 0
+NumberOfRelocations 0
+PointerToLinenumbers 0
+NumberOfLinenumbers 0
+Characteristics 40000040
+
+Name: .reloc
+Misc_VirtualSize 12E
+Misc_PhysicalAddress 12E
+VirtualAddress 5000
+PointerToRawData 1800
+SizeOfRawData 200
+PointerToRelocations 0
+NumberOfRelocations 0
+PointerToLinenumbers 0
+NumberOfLinenumbers 0
+Characteristics 42000040
