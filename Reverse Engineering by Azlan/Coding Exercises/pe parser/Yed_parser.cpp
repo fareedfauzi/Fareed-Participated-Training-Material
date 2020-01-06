@@ -1,17 +1,14 @@
-// Yed_parser.cpp : This file contains the 'main' function. Program execution begins and ends there
+﻿// Yed_parser.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
 
-
-
-//Nih antara library yang kita kena include, terutama sekali winnt.h. Sebab all struct PE ada dalam winnt.h. Windows.h tayah pun takpe bila dah ada winnt.h
 #include <iostream>
-#include <Windows.h>
 #include <stdio.h>
+#include <Windows.h>
 #include <winnt.h>
 
-//Untuk user pass argument ataupun parameter istilahnya. Contohnya Yed_parser.exe [nama file]. So, nama file tu adalah argument kita.
 int main(int argc, char** argv)
 {
-    //Assign kan fp sebagai datatype FILE. So variable fp akan jadi our file.
+    //char c;
     FILE* fp;
     unsigned long fileLen;
 
@@ -20,27 +17,19 @@ int main(int argc, char** argv)
     PIMAGE_FILE_HEADER file_header;
     PIMAGE_OPTIONAL_HEADER32 optional_header;
     PIMAGE_SECTION_HEADER section_header;
-
+    PIMAGE_DATA_DIRECTORY data_directory;
+    PIMAGE_IMPORT_DESCRIPTOR importDescriptor;
+    PIMAGE_THUNK_DATA thunk_Data;
+    PIMAGE_SECTION_HEADER section_import = {};
     
-    /*fp = fopen("POC.exe", "rb");
-    if (fp == NULL) {
-        printf("\nCan't open file or file doesn't exist.");
-
-        exit(0);
-    }
-    printf("Welcome... \n \n");*/
-    
-    
-    
-    // If argument not enough. Contoh dia supply yed_parser without parameter 
+    // If argument not enough 
     if (argc < 2) {
         printf("Usage : ./yed_parser.exe <filename>");
         exit(0);
     }
     
-    // Open file dalam readbyte(rb). Then iniate ke dalam fp.
+    // Open file 
     fp = fopen(argv[1], "rb");
-    //Kalau file tak jumpa, dia print mesej bawah tu.
     if (fp == NULL) {
         printf("\nCan't open file or file doesn't exist.");
         exit(0);
@@ -61,69 +50,110 @@ int main(int argc, char** argv)
     
 
     //Image_DOS_Header
-    dos_header = (PIMAGE_DOS_HEADER)mem; //get the first byte which is for DOS header. 0x00 byte.
-    printf("============================\nIMAGE_DOS_HEADER\n============================\n"); //refer line 16682 in winnt.h
-    //Nih member2 struct PIMAGE_DOS_HEADER yang important
-    printf("e_magic: %x\n", dos_header->e_magic);
-    printf("e_lfanew: %x\n", dos_header->e_lfanew);
+    dos_header = (PIMAGE_DOS_HEADER)mem; //get the first byte which is for DOS header
+    printf("============================\n IMAGE_DOS_HEADER\n============================\n");
+    printf("\t\t0x%x\t\t\t e_magic\n", dos_header->e_magic);
+    printf("\t\t0x%x\t\t\t e_lfanew\n", dos_header->e_lfanew);
 
 
     //Image_NT_Header
-    printf("\n============================\nIMAGE_NT_HEADERS\n============================\n"); //refer line 16990 in winnt.h
-    nt_header = (PIMAGE_NT_HEADERS)(mem + dos_header->e_lfanew); //to get the first byte for NT_HEADER. 1st byte of file (0x00) + value of e_lfanew (x value) = first byte of NT_HEADER
-    printf("Signature: %x\n", nt_header->Signature);
+    printf("\n============================\n IMAGE_NT_HEADERS\n============================\n");
+    nt_header = (PIMAGE_NT_HEADERS)(mem + dos_header->e_lfanew);
+    printf("\t\t0x%x\t\t\t Signature\n", nt_header->Signature);
 
     //Image_File_Header
-    printf("\n============================\nIMAGE_FILE_HEADERS\n============================\n");
-    file_header = (PIMAGE_FILE_HEADER)(mem + dos_header->e_lfanew + 0x4); // mem + dos_header->e_lfanew + 4 = nt_header
-    //Why 0x4? refer poster PE header yang abang Lan bagi.
-    printf("Machine: %x\n", file_header->Machine);
-    printf("NumberOfSections: %d\n", file_header->NumberOfSections);
-    printf("TimeDateStamp: %x\n", file_header->TimeDateStamp);
-    printf("PointerToSymbolTable: %x\n", file_header->PointerToSymbolTable);
-    printf("NumberOfSymbols: %x\n", file_header->NumberOfSymbols);
-    printf("SizeOfOptionalHeader: %x\n", file_header->SizeOfOptionalHeader);
-    printf("Characteristics: %x\n", file_header->Characteristics);
+    printf("\n============================\n IMAGE_FILE_HEADERS\n============================\n");
+    file_header = (PIMAGE_FILE_HEADER)(mem + dos_header->e_lfanew + 0x4);
+    printf("\t\t0x%x\t\t\t Machine\n", file_header->Machine);
+    printf("\t\t%d\t\t\t NumberOfSections\n", file_header->NumberOfSections);
+    printf("\t\t0x%x\t\t TimeDateStamp\n", file_header->TimeDateStamp);
+    printf("\t\t0x%x\t\t\t PointerToSymbolTable\n", file_header->PointerToSymbolTable);
+    printf("\t\t0x%x\t\t\t NumberOfSymbols\n", file_header->NumberOfSymbols);
+    printf("\t\t0x%x\t\t\t SizeOfOptionalHeader\n", file_header->SizeOfOptionalHeader);
+    printf("\t\t0x%x\t\t\t Characteristics\n", file_header->Characteristics);
     
     //Image_Optional_Header
-    printf("\n============================\nIMAGE_OPTIONAL_HEADER\n============================\n");
-    optional_header = (PIMAGE_OPTIONAL_HEADER32)(mem + dos_header->e_lfanew + 0x18); // mem + dos_header->e_lfanew + 0x18 = optional_header32
-    ////Why 0x18? refer poster PE header yang abang Lan bagi.
-    printf("Magic: %x\n", optional_header->Magic);
-    printf("AddressOfEntryPoint: %x\n", optional_header->AddressOfEntryPoint);
-    printf("ImageBase: %llx\n", optional_header->ImageBase);
-    printf("SectionAlignment: %x\n", optional_header->SectionAlignment);
-    printf("FileAlignment: %x\n", optional_header->FileAlignment);
-    printf("MajorSubsystemVersion: 0x%x\n", optional_header->MajorSubsystemVersion);
-    printf("SizeOfImage: %x\n", optional_header->SizeOfImage);
-    printf("SizeOfHeaders: %x\n", optional_header->SizeOfHeaders);
-    printf("Subsystem: %x\n", optional_header->Subsystem);
-    printf("NumberOfRvaAndSizes: %x\n", optional_header->NumberOfRvaAndSizes);
+    printf("\n============================\n IMAGE_OPTIONAL_HEADER\n============================\n");
+    optional_header = (PIMAGE_OPTIONAL_HEADER32)(mem + dos_header->e_lfanew + 0x18);
+    printf("\t\t0x%x\t\t\t Magic\n", optional_header->Magic);
+    printf("\t\t0x%x\t\t\t AddressOfEntryPoint\n", optional_header->AddressOfEntryPoint);
+    printf("\t\t0x%x\t\t ImageBase\n", optional_header->ImageBase);
+    printf("\t\t0x%x\t\t\t SectionAlignment\n", optional_header->SectionAlignment);
+    printf("\t\t0x%x\t\t\t FileAlignment\n", optional_header->FileAlignment);
+    printf("\t\t0x%x\t\t\t MajorSubsystemVersion\n", optional_header->MajorSubsystemVersion);
+    printf("\t\t0x%x\t\t\t SizeOfImage\n", optional_header->SizeOfImage);
+    printf("\t\t0x%x\t\t\t SizeOfHeaders\n", optional_header->SizeOfHeaders);
+    printf("\t\t0x%x\t\t\t Subsystem\n", optional_header->Subsystem);
+    printf("\t\t0x%x\t\t\t NumberOfRvaAndSizes\n", optional_header->NumberOfRvaAndSizes);
 
     //Image_Section_Header
-    printf("\n============================\nIMAGE_SECTION_HEADER\n============================\n");
-    
+    printf("\n============================\n IMAGE_SECTION_HEADER\n============================\n");
+    // get offset to the import directory RVA
+    DWORD importDirectoryRVA = nt_header->OptionalHeader.DataDirectory[1].VirtualAddress;
+
+    // get offset to first section headeer
+    DWORD sectionLocation = (DWORD)nt_header + sizeof(DWORD) + (DWORD)(sizeof(IMAGE_FILE_HEADER)) + (DWORD)nt_header->FileHeader.SizeOfOptionalHeader;
+    DWORD sectionSize = (DWORD)sizeof(IMAGE_SECTION_HEADER);
+
     int next_section = 0;
-
     int nsection = nt_header->FileHeader.NumberOfSections;
+    
     for (int i = 0; i < nsection; i++) {
-        //Why 0xF8? refer poster PE header yang abang Lan bagi. Kira total Image optional header dari awal sampai habis akan dapat F8
-        section_header = (PIMAGE_SECTION_HEADER)(mem + dos_header->e_lfanew + 0xF8 + next_section);
-        //next section akan tambah dengan 40bytes sbb size of each of section header 40 bytes.
-        next_section = next_section + sizeof(IMAGE_SECTION_HEADER);
-        printf("\n%s\n", section_header->Name);
-        printf("RVA: %x\n", section_header->Misc.VirtualSize);
-        printf("Virtual address: %x\n", section_header->VirtualAddress);
-        printf("SizeOfRawData: %x\n", section_header->SizeOfRawData);
-        printf("PointerToRawData: %x\n", section_header->PointerToRawData);
-        printf("PointerToRelocations: %x\n", section_header->PointerToRelocations);
-        printf("PointerToLinenumbers: %x\n", section_header->PointerToLinenumbers);
-        printf("NumberOfRelocations: %x\n", section_header->NumberOfRelocations);
-        printf("Characteristics: %x\n", section_header->Characteristics);
-        printf("________________________\n");
-        
-    };
+        section_header = (PIMAGE_SECTION_HEADER)sectionLocation;
+        printf("\t%s\n", section_header->Name);
+        printf("\t\t0x%x\t\tVirtual Size\n", section_header->Misc.VirtualSize);
+        printf("\t\t0x%x\t\tVirtual Address\n", section_header->VirtualAddress);
+        printf("\t\t0x%x\t\tSize Of Raw Data\n", section_header->SizeOfRawData);
+        printf("\t\t0x%x\t\tPointer To Raw Data\n", section_header->PointerToRawData);
+        printf("\t\t0x%x\t\tPointer To Relocations\n", section_header->PointerToRelocations);
+        printf("\t\t0x%x\t\tPointer To Line Numbers\n", section_header->PointerToLinenumbers);
+        printf("\t\t0x%x\t\tNumber Of Relocations\n", section_header->NumberOfRelocations);
+        printf("\t\t0x%x\t\tNumber Of Line Numbers\n", section_header->NumberOfLinenumbers);
+        printf("\t\t0x%x\tCharacteristics\n", section_header->Characteristics);
 
+        // save section that contains import directory table
+        if (importDirectoryRVA >= section_header->VirtualAddress && importDirectoryRVA < section_header->VirtualAddress + section_header->Misc.VirtualSize) {
+            section_import = section_header;
+        }
+        
+        sectionLocation += sectionSize;
+    }
+
+    // DATA_DIRECTORIES
+    printf("\n============================\n DATA DIRECTORIES\n============================\n");
+    printf("\n");
+    printf("Export Directory Address: 0x%x; Size: 0x%x\n", nt_header->OptionalHeader.DataDirectory[0].VirtualAddress, nt_header->OptionalHeader.DataDirectory[0].Size);
+    printf("Import Directory Address: 0x%x; Size: 0x%x\n", nt_header->OptionalHeader.DataDirectory[1].VirtualAddress, nt_header->OptionalHeader.DataDirectory[1].Size);
+
+    //Import Table
+    printf("\n============================\n IMPORT TABLE\n============================\n");
+
+    
+    // get file offset to import table
+    DWORD rawOffset = (DWORD)mem + section_import->PointerToRawData;
+    
+
+    // get pointer to import descriptor's file offset. 
+    
+    //Note that the formula for calculating file offset is: 
+    //imageBaseAddress + pointerToRawDataOfTheSectionContainingRVAofInterest + (RVAofInterest - SectionContainingRVAofInterest.VirtualAddress)
+    importDescriptor = (PIMAGE_IMPORT_DESCRIPTOR)(rawOffset + (nt_header->OptionalHeader.DataDirectory[1].VirtualAddress - section_import->VirtualAddress));
+    
+    for (; importDescriptor->Name != 0; importDescriptor++) {
+        // imported dll modules name
+        printf("\t%s\n", rawOffset + (importDescriptor->Name - section_import->VirtualAddress));
+        DWORD thunk = importDescriptor->OriginalFirstThunk == 0 ? importDescriptor->FirstThunk : importDescriptor->OriginalFirstThunk;
+        thunk_Data = (PIMAGE_THUNK_DATA)(rawOffset + (thunk - section_import->VirtualAddress));
+
+        // dll exported functions
+        for (; thunk_Data->u1.AddressOfData != 0; thunk_Data++) {
+                printf("\t\t\t%s\n", (rawOffset + (thunk_Data->u1.AddressOfData - section_import->VirtualAddress + 2)));
+            
+        }
+
+    }
+    
     free(mem);
     return 0;
+
 }
