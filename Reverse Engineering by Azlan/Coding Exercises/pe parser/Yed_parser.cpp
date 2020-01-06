@@ -147,7 +147,7 @@ int main(int argc, char** argv)
 
         // dll exported functions
         for (; thunk_Data->u1.AddressOfData != 0; thunk_Data++) {
-                printf("\t\t\t%s\n", (rawOffset + (thunk_Data->u1.AddressOfData - section_import->VirtualAddress + 2)));
+                printf("\t\t\t\t%s\n", (rawOffset + (thunk_Data->u1.AddressOfData - section_import->VirtualAddress + 2)));
             
         }
 

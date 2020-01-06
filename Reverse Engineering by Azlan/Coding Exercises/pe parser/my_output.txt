@@ -1,72 +1,155 @@
 ============================
-IMAGE_DOS_HEADER
+ IMAGE_DOS_HEADER
 ============================
-e_magic: 5a4d
-e_lfanew: 80
+                0x5a4d                   e_magic
+                0xf8                     e_lfanew
 
 ============================
-IMAGE_NT_HEADERS
+ IMAGE_NT_HEADERS
 ============================
-Signature: 4550
+                0x4550                   Signature
 
 ============================
-IMAGE_FILE_HEADERS
+ IMAGE_FILE_HEADERS
 ============================
-Machine: 14c
-NumberOfSections: 3
-TimeDateStamp: 926150c4
-PointerToSymbolTable: 0
-NumberOfSymbols: 0
-SizeOfOptionalHeader: e0
-Characteristics: 22
+                0x14c                    Machine
+                5                        NumberOfSections
+                0x5e1304c0               TimeDateStamp
+                0x0                      PointerToSymbolTable
+                0x0                      NumberOfSymbols
+                0xe0                     SizeOfOptionalHeader
+                0x102                    Characteristics
 
 ============================
-IMAGE_OPTIONAL_HEADER
+ IMAGE_OPTIONAL_HEADER
 ============================
-Magic: 10b
-AddressOfEntryPoint: 4bfe
-ImageBase: c9239000400000
-SectionAlignment: 2000
-FileAlignment: 200
-MajorSubsystemVersion: 0x4
-SizeOfImage: a000
-SizeOfHeaders: 200
-Subsystem: 2
-NumberOfRvaAndSizes: 10
+                0x10b                    Magic
+                0x162d                   AddressOfEntryPoint
+                0x400000                 ImageBase
+                0x1000                   SectionAlignment
+                0x200                    FileAlignment
+                0x6                      MajorSubsystemVersion
+                0x8000                   SizeOfImage
+                0x400                    SizeOfHeaders
+                0x3                      Subsystem
+                0x10                     NumberOfRvaAndSizes
 
 ============================
-IMAGE_SECTION_HEADER
+ IMAGE_SECTION_HEADER
+============================
+        .text
+                0x106c          Virtual Size
+                0x1000          Virtual Address
+                0x1200          Size Of Raw Data
+                0x400           Pointer To Raw Data
+                0x0             Pointer To Relocations
+                0x0             Pointer To Line Numbers
+                0x0             Number Of Relocations
+                0x0             Number Of Line Numbers
+                0x60000020      Characteristics
+        .rdata
+                0x1148          Virtual Size
+                0x3000          Virtual Address
+                0x1200          Size Of Raw Data
+                0x1600          Pointer To Raw Data
+                0x0             Pointer To Relocations
+                0x0             Pointer To Line Numbers
+                0x0             Number Of Relocations
+                0x0             Number Of Line Numbers
+                0x40000040      Characteristics
+        .data
+                0x388           Virtual Size
+                0x5000          Virtual Address
+                0x200           Size Of Raw Data
+                0x2800          Pointer To Raw Data
+                0x0             Pointer To Relocations
+                0x0             Pointer To Line Numbers
+                0x0             Number Of Relocations
+                0x0             Number Of Line Numbers
+                0xc0000040      Characteristics
+        .rsrc
+                0x1e0           Virtual Size
+                0x6000          Virtual Address
+                0x200           Size Of Raw Data
+                0x2a00          Pointer To Raw Data
+                0x0             Pointer To Relocations
+                0x0             Pointer To Line Numbers
+                0x0             Number Of Relocations
+                0x0             Number Of Line Numbers
+                0x40000040      Characteristics
+        .reloc
+                0x1bc           Virtual Size
+                0x7000          Virtual Address
+                0x200           Size Of Raw Data
+                0x2c00          Pointer To Raw Data
+                0x0             Pointer To Relocations
+                0x0             Pointer To Line Numbers
+                0x0             Number Of Relocations
+                0x0             Number Of Line Numbers
+                0x42000040      Characteristics
+
+============================
+ DATA DIRECTORIES
 ============================
 
-.text
-RVA: 2c04
-Virtual address: 2000
-SizeOfRawData: 2e00
-PointerToRawData: 200
-PointerToRelocations: 0
-PointerToLinenumbers: 0
-NumberOfRelocations: 0
-Characteristics: 60000020
-________________________
+Export Directory Address: 0x0; Size: 0x0
+Import Directory Address: 0x3b74; Size: 0xa0
 
-.rsrc
-RVA: 5bc
-Virtual address: 6000
-SizeOfRawData: 600
-PointerToRawData: 3000
-PointerToRelocations: 0
-PointerToLinenumbers: 0
-NumberOfRelocations: 0
-Characteristics: 40000040
-________________________
-
-.reloc
-RVA: c
-Virtual address: 8000
-SizeOfRawData: 200
-PointerToRawData: 3600
-PointerToRelocations: 0
-PointerToLinenumbers: 0
-NumberOfRelocations: 0
-Characteristics: 42000040
-________________________
+============================
+ IMPORT TABLE
+============================
+        VCRUNTIME140.dll
+                                __current_exception_context
+                                __current_exception
+                                memset
+                                _except_handler4_common
+        api-ms-win-crt-runtime-l1-1-0.dll
+                                _c_exit
+                                _register_thread_local_exe_atexit_callback
+                                _configure_narrow_argv
+                                __p___argv
+                                exit
+                                __p___argc
+                                _initialize_onexit_table
+                                _register_onexit_function
+                                _crt_atexit
+                                _controlfp_s
+                                terminate
+                                _exit
+                                _initterm_e
+                                _initterm
+                                _cexit
+                                _get_initial_narrow_environment
+                                _set_app_type
+                                _seh_filter_exe
+                                _initialize_narrow_environment
+        api-ms-win-crt-stdio-l1-1-0.dll
+                                fread
+                                __stdio_common_vfprintf
+                                fseek
+                                __acrt_iob_func
+                                fopen
+                                ftell
+                                __p__commode
+                                _set_fmode
+        api-ms-win-crt-heap-l1-1-0.dll
+                                free
+                                malloc
+                                _set_new_mode
+        api-ms-win-crt-math-l1-1-0.dll
+                                __setusermatherr
+        api-ms-win-crt-locale-l1-1-0.dll
+                                _configthreadlocale
+        KERNEL32.dll
+                                GetSystemTimeAsFileTime
+                                SetUnhandledExceptionFilter
+                                GetCurrentProcess
+                                TerminateProcess
+                                IsProcessorFeaturePresent
+                                GetModuleHandleW
+                                IsDebuggerPresent
+                                InitializeSListHead
+                                UnhandledExceptionFilter
+                                GetCurrentThreadId
+                                GetCurrentProcessId
+                                QueryPerformanceCounter
