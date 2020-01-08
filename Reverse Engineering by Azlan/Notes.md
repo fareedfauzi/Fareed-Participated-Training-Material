@@ -19,3 +19,9 @@
 
 # Tips
 - Kena ada curiousity yang tinggi how things works.
+
+# Calculate RVA
+RVA = VA - Image Base
+
+# Calculate offset
+File offset = rva (virtual offset) - va + raw offset(section)
