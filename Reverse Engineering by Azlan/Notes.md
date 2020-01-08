@@ -19,6 +19,8 @@
 
 # Tips
 - Kena ada curiousity yang tinggi how things works.
+- Coding, coding and coding!
+- Coding guna WinAPI
 
 # Calculate RVA
 RVA = VA - Image Base
